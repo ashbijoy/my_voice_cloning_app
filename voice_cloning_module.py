@@ -1,58 +1,65 @@
 # voice_cloning_module.py
-import os
-import shutil
-# For a real implementation, you might import your TTS modules like:
-# from synthesizer.inference import Synthesizer
-# from encoder import inference as encoder
-# from vocoder import inference as vocoder
-# import soundfile as sf
+import numpy as np
+import soundfile as sf
+import librosa
+
+# Import the TTS modules from the Real-Time Voice Cloning toolkit
+from encoder import inference as encoder_module
+from synthesizer.inference import Synthesizer
+from vocoder import inference as vocoder_module
 
 def load_models():
     """
-    Pseudocode for loading your pretrained models.
-    In a real setup, uncomment and adjust the following:
-    
-    encoder.load_model("path/to/encoder/model.pt")
-    synthesizer = Synthesizer("path/to/synthesizer/model.pt")
-    vocoder.load_model("path/to/vocoder/model.pt")
-    return encoder, synthesizer, vocoder
+    Loads the pretrained models for the encoder, synthesizer, and vocoder.
+    Make sure to adjust the paths according to your setup.
     """
-    # For demonstration, we are not loading any models.
-    pass
+    # Load the encoder model
+    encoder_module.load_model("encoder/saved_models/pretrained.pt")
+    
+    # Load the synthesizer model
+    synthesizer = Synthesizer("synthesizer/saved_models/pretrained/pretrained.pt")
+    
+    # Load the vocoder model
+    vocoder_module.load_model("vocoder/saved_models/pretrained/pretrained.pt")
+    
+    return encoder_module, synthesizer, vocoder_module
 
-def clone_tts(text, voice_sample_path="samples/my_voice.wav", output_path="output.wav"):
+def clone_tts(text, voice_sample_path, output_path, encoder, synthesizer, vocoder):
     """
-    Process the provided text to generate an audio file that sounds like your voice.
+    Clones your voice and synthesizes speech for the given text.
     
-    Steps (when fully implemented):
-      1. **Voice Embedding Extraction:** Load your voice sample and extract an embedding.
-      2. **Spectrogram Synthesis:** Use the text and embedding to generate a mel spectrogram.
-      3. **Waveform Generation:** Convert the spectrogram into an audio waveform.
-      4. **Save Audio:** Write the waveform as a WAV file.
+    Steps:
+      1. Preprocess the voice sample and extract an embedding.
+      2. Generate a mel spectrogram from the input text conditioned on the voice embedding.
+      3. Convert the spectrogram to a waveform using the vocoder.
+      4. Save the generated waveform as a WAV file.
     
-    For demonstration, this function simply copies the sample voice file to the output.
-    Replace the below dummy code with your actual TTS pipeline.
+    Parameters:
+      text (str): The text input to be synthesized.
+      voice_sample_path (str): Path to your voice sample.
+      output_path (str): Path where the output WAV file will be saved.
+      encoder: Loaded encoder module.
+      synthesizer: Loaded synthesizer instance.
+      vocoder: Loaded vocoder module.
     """
-    # Dummy implementation: Copy the voice sample as the output.
-    # This means you'll hear your voice sample regardless of the text input.
-    shutil.copy(voice_sample_path, output_path)
+    # 1. Preprocess the voice sample and compute the embedding
+    wav, _ = librosa.load(voice_sample_path, sr=16000)
+    wav = encoder.preprocess_wav(wav)
+    embed = encoder.embed_utterance(wav)
     
-    # For a real TTS implementation, you might do something like:
-    #
-    # 1. Preprocess the voice sample and extract the embedding:
-    #    wav = encoder.preprocess_wav(voice_sample_path)
-    #    embed = encoder.embed_utterance(wav)
-    #
-    # 2. Generate a mel spectrogram from the text and embedding:
-    #    texts = [text]
-    #    embeds = [embed]
-    #    specs = synthesizer.synthesize_spectrograms(texts, embeds)
-    #    spec = specs[0]
-    #
-    # 3. Convert the spectrogram to a waveform:
-    #    generated_wav = vocoder.infer_waveform(spec)
-    #
-    # 4. Save the generated waveform as a WAV file:
-    #    sf.write(output_path, generated_wav, 22050)
+    # 2. Synthesize a mel spectrogram from the text and the voice embedding
+    texts = [text]
+    embeds = [embed]
+    specs = synthesizer.synthesize_spectrograms(texts, embeds)
+    spec = specs[0]
+    
+    # 3. Generate the waveform from the spectrogram using the vocoder
+    generated_wav = vocoder.infer_waveform(spec)
+    
+    # Optional: Post-process the waveform (e.g., trimming silence, normalization)
+    generated_wav = np.pad(generated_wav, (0, synthesizer.sample_rate), mode="constant")
+    
+    # 4. Save the waveform as a WAV file
+    sf.write(output_path, generated_wav, synthesizer.sample_rate)
     
     return output_path
