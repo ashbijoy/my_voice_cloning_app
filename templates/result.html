@@ -1,0 +1,17 @@
+<!-- templates/result.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your Voice TTS Output</title>
+</head>
+<body>
+    <h1>Your Audio Output</h1>
+    <audio controls autoplay>
+        <source src="{{ audio_url }}" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    <br>
+    <a href="/">Try another text</a>
+</body>
+</html>
