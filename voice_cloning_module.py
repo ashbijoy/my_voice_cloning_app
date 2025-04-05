@@ -1,4 +1,7 @@
 # voice_cloning_module.py
+import sys
+sys.path.append("/Users/ashwinbijoy/Desktop/folder/code/Real-Time-Voice-Cloning")
+
 import numpy as np
 import soundfile as sf
 import librosa
