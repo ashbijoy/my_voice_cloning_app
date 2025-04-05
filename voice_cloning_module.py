@@ -22,10 +22,10 @@ def load_models():
     encoder_model_path = Path("/Users/ashwinbijoy/Desktop/folder/code/Real-Time-Voice-Cloning/encoder/saved_models/pretrained.pt")
     encoder_module.load_model(encoder_model_path)
     # Load the synthesizer model
-    synthesizer = Synthesizer("synthesizer/saved_models/pretrained/pretrained.pt")
+    synthesizer = Synthesizer("synthesizer/saved_model/synthesizer.pt")
     
     # Load the vocoder model
-    vocoder_module.load_model("vocoder/saved_models/pretrained/pretrained.pt")
+    vocoder_module.load_model("vocoder/saved_models/vocoder.pt")
     
     return encoder_module, synthesizer, vocoder_module
 
