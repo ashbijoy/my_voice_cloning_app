@@ -17,7 +17,7 @@ def load_models():
     Make sure to adjust the paths according to your setup.
     """
     # Load the encoder model
-    encoder_module.load_model("encoder/saved_models/pretrained.pt")
+    encoder_module.load_model("/Users/ashwinbijoy/Desktop/folder/code/Real-Time-Voice-Cloning/encoder/saved_models/pretrained.pt")
     
     # Load the synthesizer model
     synthesizer = Synthesizer("synthesizer/saved_models/pretrained/pretrained.pt")
