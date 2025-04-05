@@ -1,4 +1,6 @@
 # voice_cloning_module.py
+from pathlib import Path
+
 import sys
 sys.path.append("/Users/ashwinbijoy/Desktop/folder/code/Real-Time-Voice-Cloning")
 
@@ -17,8 +19,8 @@ def load_models():
     Make sure to adjust the paths according to your setup.
     """
     # Load the encoder model
-    encoder_module.load_model("/Users/ashwinbijoy/Desktop/folder/code/Real-Time-Voice-Cloning/encoder/saved_models/pretrained.pt")
-    
+    encoder_model_path = Path("/Users/ashwinbijoy/Desktop/folder/code/Real-Time-Voice-Cloning/encoder/saved_models/pretrained.pt")
+    encoder_module.load_model(encoder_model_path)
     # Load the synthesizer model
     synthesizer = Synthesizer("synthesizer/saved_models/pretrained/pretrained.pt")
     
