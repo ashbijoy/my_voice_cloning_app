@@ -1,16 +1,23 @@
-<!-- templates/index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Voice Cloning TTS App</title>
+    <meta charset="UTF-8">
+    <title>My Voice Cloning App</title>
+    <!-- Link to the dark-mode CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-  <h1>Voice Cloning TTS App</h1>
-  <form action="/speak" method="post">
-    <label for="text">Enter text:</label><br>
-    <textarea name="text" id="text" rows="4" cols="50" placeholder="Type your text here..."></textarea><br><br>
-    <input type="submit" value="Speak">
-  </form>
+    <div class="container">
+        <header>
+            <h1>My Voice Cloning App</h1>
+            <p>Type your text below and hear it in your own voice.</p>
+        </header>
+        <form action="/speak" method="post">
+            <textarea name="text" placeholder="Enter text here..." required></textarea>
+            <button type="submit">Speak</button>
+        </form>
+    </div>
+    <!-- Link the JavaScript file -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
