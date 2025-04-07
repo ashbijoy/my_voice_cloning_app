@@ -1,17 +1,24 @@
-<!-- templates/result.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Your Voice TTS Output</title>
+    <meta charset="UTF-8">
+    <title>Audio Output</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Your Audio Output</h1>
-    <audio controls autoplay>
-        <source src="{{ audio_url }}" type="audio/wav">
-        Your browser does not support the audio element.
-    </audio>
-    <br>
-    <a href="/">Try another text</a>
+    <div class="container">
+        <header>
+            <h1>Audio Output</h1>
+        </header>
+        <div class="player-container">
+            <audio controls autoplay>
+                <source src="{{ audio_url }}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <a class="back-button" href="/">Try another text</a>
+    </div>
+    <!-- Link the JavaScript file -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
