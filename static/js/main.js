@@ -1,13 +1,18 @@
 // static/js/main.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.main-container');
-  if (container) {
-    container.style.opacity = 0;
+  const mainContainer = document.querySelector('.main-container');
+  
+  // Initially add the "hidden" class if not already set in HTML
+  if (mainContainer) {
+    mainContainer.classList.add('hidden');
+    
+    // Use a small timeout to trigger CSS transition
     setTimeout(() => {
-      container.style.transition = 'opacity 1s ease-in';
-      container.style.opacity = 1;
+      mainContainer.classList.remove('hidden');
+      mainContainer.classList.add('animate');
     }, 100);
   }
-  console.log("Page loaded with light-themed UI.");
+  
+  console.log("Advanced light-themed UI loaded.");
 });
