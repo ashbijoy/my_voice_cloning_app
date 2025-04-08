@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Audio Output</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
   </head>
   <body>
+    <!-- Fixed header for the logo -->
     <div class="header-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" />
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" />
     </div>
+    <!-- Main content container -->
     <div class="main-container">
       <header class="header">
-        <h1 class="site-title">My Voice Cloning App</h1>
+        <h1 class="site-title">Audio Output</h1>
       </header>
       <div class="player-container">
         <audio controls autoplay>

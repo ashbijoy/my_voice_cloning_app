@@ -3,23 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <title>My Voice Cloning App</title>
+    <!-- Link to Google Fonts for enhanced typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
   </head>
   <body>
+    <!-- Fixed header for the logo -->
     <div class="header-logo">
       <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" />
     </div>
-    <!-- Main container for the rest of the content -->
+    <!-- Main container for the content -->
     <div class="main-container">
       <header class="header">
         <h1 class="site-title">My Voice Cloning App</h1>
         <p class="tagline">Hear your words exactly as you say them.</p>
       </header>
       <form class="input-form" action="/speak" method="post">
-        <textarea name="text" placeholder="Enter text here..." required></textarea>
+        <textarea name="text" placeholder="Enter your text here..." required></textarea>
         <button type="submit">Speak</button>
       </form>
     </div>
+    <!-- Link the JavaScript file -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>
