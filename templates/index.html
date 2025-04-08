@@ -6,9 +6,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
   </head>
   <body>
+    <div class="header-logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" />
+    </div>
+    <!-- Main container for the rest of the content -->
     <div class="main-container">
       <header class="header">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" />
         <h1 class="site-title">My Voice Cloning App</h1>
         <p class="tagline">Hear your words exactly as you say them.</p>
       </header>
@@ -17,7 +20,6 @@
         <button type="submit">Speak</button>
       </form>
     </div>
-    <!-- Link the JavaScript file -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>

@@ -1,24 +1,34 @@
-/* static/css/styles.css */
-
-/* Body styling: light background and modern system fonts */
+/* Apply a light background and modern system fonts */
 body {
     margin: 0;
     padding: 0;
-    background-color: #f7f7f8;  /* Very light gray/white background */
+    background-color: #fef9ed;  /* Light background */
     color: #333;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Use column flexbox for vertical stacking */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
   }
-
+  
+  /* Header logo styling: fixed at the top, spans full width */
+  .header-logo {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #fef9ed;  /* Same as body background (or transparent if desired) */
+    padding: 20px 0;
+    z-index: 1000;  /* Ensure it stays on top */
+  }
+  
+  /* Increase logo size */
   .logo {
-    width: 80px;
+    width: 150px;  /* Adjust size as desired */
     height: auto;
   }
   
-  /* Centered container with a light card look */
+  /* Main container styling */
   .main-container {
     max-width: 600px;
     width: 90%;
@@ -27,9 +37,11 @@ body {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Add top margin so content does not overlap the fixed header logo */
+    margin-top: 180px;
   }
   
-  /* Header styling including the logo and site title */
+  /* Header inside main container (site title and tagline) */
   .header {
     margin-bottom: 2rem;
   }
@@ -38,7 +50,7 @@ body {
     margin: 0.5rem 0 0.2rem;
     font-size: 2rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #0000b2;
   }
   
   .tagline {
@@ -49,11 +61,11 @@ body {
   /* Styling for the form elements */
   .input-form textarea {
     width: 100%;
-    padding: 15px;
+    padding: 1.35%;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     border: 1px solid #d0d0d5;
-    border-radius: 8px;
+    border-radius: 2px;
     background-color: #fafafa;
     color: #333;
     resize: vertical;
