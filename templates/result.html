@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Audio Output</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Audio Output</h1>
-        </header>
-        <div class="player-container">
-            <audio controls autoplay>
-                <source src="{{ audio_url }}" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <a class="back-button" href="/">Try another text</a>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="main-container">
+      <header class="header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" />
+        <h1 class="site-title">My Voice Cloning App</h1>
+      </header>
+      <div class="player-container">
+        <audio controls autoplay>
+          <source src="{{ audio_url }}" type="audio/wav" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <a class="back-button" href="/">Try another text</a>
     </div>
     <!-- Link the JavaScript file -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
+  </body>
 </html>
