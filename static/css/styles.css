@@ -78,7 +78,7 @@ body {
   /* Styling for the form elements */
   .input-form textarea {
     width: 100%;
-    padding: 15px;
+    padding: 8px;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     border: 1px solid #d0d0d5;
